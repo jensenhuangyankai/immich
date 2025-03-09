@@ -58,33 +58,30 @@
 <section id="dashboard-navbar" class="fixed z-[900] h-[var(--navbar-height)] w-screen text-sm">
   <SkipLink text={$t('skip_to_content')} />
   <div
-    class="grid h-full grid-cols-[theme(spacing.18)_auto] items-center border-b bg-immich-bg py-2 dark:border-b-immich-dark-gray dark:bg-immich-dark-bg md:grid-cols-[theme(spacing.64)_auto]"
+    class="grid h-full grid-cols-[theme(spacing.32)_auto] items-center border-b bg-immich-bg py-2 dark:border-b-immich-dark-gray dark:bg-immich-dark-bg md:grid-cols-[theme(spacing.64)_auto]"
   >
-    <div class="flex flex-row ml-4">
-      <CircleIconButton
-        id={menuButtonId}
-        title={$t('main_menu')}
-        icon={mdiMenu}
-        padding="2"
-        onclick={() => {
-          isSidebarOpen.value = !isSidebarOpen.value;
-        }}
-        class="md:hidden"
-      />
-      <a data-sveltekit-preload-data="hover" class="hidden md:block" href={AppRoute.PHOTOS}>
-        <ImmichLogo width="150em" />
+    <div class="flex flex-row gap-1 mx-4 items-center">
+      <div>
+        <CircleIconButton
+          id={menuButtonId}
+          title={$t('main_menu')}
+          icon={mdiMenu}
+          padding="2"
+          onclick={() => {
+            isSidebarOpen.value = !isSidebarOpen.value;
+          }}
+          class="md:hidden"
+        />
+      </div>
+      <a data-sveltekit-preload-data="hover" href={AppRoute.PHOTOS}>
+        <ImmichLogo width="140em" noText={innerWidth < 768} />
       </a>
     </div>
     <div class="flex justify-between gap-4 lg:gap-8 pr-6">
-      <div class="flex items-center gap-2 max-w-5xl w-full">
-        <a data-sveltekit-preload-data="hover" class="md:hidden" href={AppRoute.PHOTOS}>
-          <ImmichLogo width="40em" noText={true} class="max-w-none" />
-        </a>
-        <div class="hidden flex-1 tall:pl-0 sm:block">
-          {#if $featureFlags.search}
-            <SearchBar grayTheme={true} />
-          {/if}
-        </div>
+      <div class="hidden flex-1 tall:pl-0 sm:block">
+        {#if $featureFlags.search}
+          <SearchBar grayTheme={true} />
+        {/if}
       </div>
 
       <section class="flex place-items-center justify-end gap-1 w-full sm:w-auto">
