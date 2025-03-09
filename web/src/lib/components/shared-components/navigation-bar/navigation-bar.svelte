@@ -5,7 +5,6 @@
 <script lang="ts">
   import { page } from '$app/state';
   import { clickOutside } from '$lib/actions/click-outside';
-  import CircleIconButton from '$lib/components/elements/buttons/circle-icon-button.svelte';
   import SkipLink from '$lib/components/elements/buttons/skip-link.svelte';
   import HelpAndFeedbackModal from '$lib/components/shared-components/help-and-feedback-modal.svelte';
   import ImmichLogo from '$lib/components/shared-components/immich-logo.svelte';
@@ -93,14 +92,16 @@
 
       <section class="flex place-items-center justify-end gap-1 w-full sm:w-auto">
         {#if $featureFlags.search}
-          <CircleIconButton
+          <IconButton
+            shape="round"
+            color="secondary"
+            variant="ghost"
+            size="large"
             href={AppRoute.SEARCH}
             id="search-button"
             class="sm:hidden"
-            title={$t('go_to_search')}
+            aria-label={$t('go_to_search')}
             icon={mdiMagnify}
-            padding="2"
-            onclick={() => {}}
           />
         {/if}
 
@@ -130,12 +131,15 @@
           >
             {$t('upload')}
           </Button>
-          <CircleIconButton
+          <IconButton
+            shape="round"
+            color="secondary"
+            variant="ghost"
+            size="large"
             onclick={onUploadClick}
-            title={$t('upload')}
+            aria-label={$t('upload')}
             icon={mdiTrayArrowUp}
             class="lg:hidden"
-            padding="2"
           />
         {/if}
 
