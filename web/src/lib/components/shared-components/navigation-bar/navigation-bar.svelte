@@ -62,15 +62,18 @@
   >
     <div class="flex flex-row gap-1 mx-4 items-center">
       <div>
-        <CircleIconButton
+        <IconButton
           id={menuButtonId}
-          title={$t('main_menu')}
+          shape="round"
+          color="secondary"
+          variant="ghost"
+          size="large"
+          aria-label={$t('main_menu')}
           icon={mdiMenu}
-          padding="2"
           onclick={() => {
             isSidebarOpen.value = !isSidebarOpen.value;
           }}
-          onmousedown={(event) => {
+          onmousedown={(event: MouseEvent) => {
             // stops event from reaching the default handler when clicking outside of the sidebar
             event.stopPropagation();
           }}
@@ -111,7 +114,6 @@
             color="secondary"
             variant="ghost"
             size="large"
-            title={$t('support_and_feedback')}
             icon={mdiHelpCircleOutline}
             onclick={() => (shouldShowHelpPanel = !shouldShowHelpPanel)}
             aria-label={$t('support_and_feedback')}

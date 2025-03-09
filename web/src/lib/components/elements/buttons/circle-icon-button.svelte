@@ -41,7 +41,6 @@
     tabindex?: number | undefined | null;
     role?: string | undefined | null;
     onclick: (e: MouseEvent) => void;
-    onmousedown?: (e: MouseEvent) => void;
     disabled?: boolean;
   }
 
@@ -58,7 +57,6 @@
     viewBox = undefined,
     class: className = '',
     onclick,
-    onmousedown,
     ...rest
   }: Props = $props();
 
@@ -96,7 +94,6 @@
   style:height={buttonSize ? buttonSize + 'px' : ''}
   class="flex place-content-center place-items-center rounded-full {colorClass} {paddingClass} transition-all disabled:cursor-default hover:dark:text-immich-dark-gray {className} {mobileClass}"
   {onclick}
-  {onmousedown}
   {...rest}
 >
   <Icon path={icon} {size} ariaLabel={title} {viewBox} color="currentColor" />
