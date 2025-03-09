@@ -16,12 +16,16 @@
   let innerWidth: number = $state(0);
 
   onMount(() => {
-    closeSidebar();
+    closeSidebar(innerWidth);
   });
 
-  const closeSidebar = () => {
-    isSidebarOpen.value = innerWidth >= mdBreakpoint ? true : false;
+  const closeSidebar = (width: number) => {
+    isSidebarOpen.value = width >= mdBreakpoint ? true : false;
   };
+
+  $effect(() => {
+    closeSidebar(innerWidth);
+  });
 
   const isHidden = $derived(!isSidebarOpen.value && innerWidth < mdBreakpoint);
   const isExpanded = $derived(isSidebarOpen.value && innerWidth < mdBreakpoint);
@@ -34,14 +38,14 @@
     if (parentId === menuButtonId || targetId === menuButtonId || !isSidebarOpen.value) {
       return;
     }
-    closeSidebar();
+    closeSidebar(innerWidth);
     if (isHidden) {
       document.querySelector<HTMLButtonElement>(`#${menuButtonId}`)?.focus();
     }
   };
 </script>
 
-<svelte:window onresize={closeSidebar} bind:innerWidth />
+<svelte:window bind:innerWidth />
 <section
   id="sidebar"
   tabindex="-1"
