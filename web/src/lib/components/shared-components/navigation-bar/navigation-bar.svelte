@@ -70,6 +70,10 @@
           onclick={() => {
             isSidebarOpen.value = !isSidebarOpen.value;
           }}
+          onmousedown={(event) => {
+            // stops event from reaching the default handler when clicking outside of the sidebar
+            event.stopPropagation();
+          }}
           class="md:hidden"
         />
       </div>

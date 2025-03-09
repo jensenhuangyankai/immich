@@ -30,12 +30,8 @@
   const isHidden = $derived(!isSidebarOpen.value && innerWidth < mdBreakpoint);
   const isExpanded = $derived(isSidebarOpen.value && innerWidth < mdBreakpoint);
 
-  const handleClickOutside = (event?: MouseEvent) => {
-    const target = event?.target as HTMLElement | undefined;
-    // The target changes depending on where the button is clicked
-    const parentId = target?.parentElement?.id;
-    const targetId = target?.id;
-    if (parentId === menuButtonId || targetId === menuButtonId || !isSidebarOpen.value) {
+  const handleClickOutside = () => {
+    if (!isSidebarOpen.value) {
       return;
     }
     closeSidebar(innerWidth);
